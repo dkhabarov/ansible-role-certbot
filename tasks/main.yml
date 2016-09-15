@@ -33,6 +33,14 @@
 - name: generate certificates
   shell: "{{certbot_dir}}/certbot-auto certonly -c /etc/certbot-{{item.main}}.conf"
   with_items: certbot_domains
+#  when: not ansible_check_mode
+  tags: generate_letsencrypt_certs
+
+#- name: generate certificates
+#  shell: "{{certbot_dir}}/certbot-auto certonly -c /etc/certbot-{{item.main}}.conf --dry-run"
+#  with_items: certbot_domains
+#  when: ansible_check_mode
+#  tags: generate_letsencrypt_certs
 
 - name: install renew script
   template:
