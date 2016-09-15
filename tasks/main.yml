@@ -1,0 +1,40 @@
+---
+
+- name: Clone Certbot into configured directory.
+  git:
+    repo: "{{ certbot_repo }}"
+    dest: "{{ certbot_dir }}"
+    version: "{{ certbot_version }}"
+    update: "{{ certbot_keep_updated }}"
+
+- name: Ensure certbot-auto is executable.
+  file:
+    path: "{{ certbot_dir }}/certbot-auto"
+    mode: 0755
+
+- name: Create public directories
+  file:
+    path: "{{item.root_dir}}"
+    mode: 0750
+    owner: "www-data"
+    group: "www-data"
+    state: directory
+  with_items: certbot_domains
+
+- name: configuration files
+  template:
+    src: config.ini.j2
+    dest: /etc/certbot-{{item.main}}.conf
+    mode: 0755
+  with_items: certbot_domains
+  tags: test
+
+- name: generate certificates
+  shell: "{{certbot_dir}}/certbot-auto certonly -c /etc/certbot-{{item.main}}.conf"
+  with_items: certbot_domains
+
+- name: install renew script
+  template:
+    src: templates/gencerts.sh
+    dest: /opt/gencerts.sh
+    mode: 0755

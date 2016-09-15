@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+
+
+email = {{ item.email }}
+
+domains = {{item.main}}{%if item.additional_domains is defined %}, {{item.additional_domains | join(', ') }} {%endif%}
+
+text
+
+authenticator = webroot
+
+webroot-path = {{item.root_dir}}
+
+renew-by-default = True
+
+agree-tos = True
+
+post-hook = {{ certbot_post_hook }}
