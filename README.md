@@ -1,6 +1,12 @@
 # ansible-role-certbot
 
-Example vars: 
+Installs Certbot (for Let's Encrypt) for Debian/Ubuntu.
+
+## Requirements
+
+Certbot requires Git to be installed.
+
+## Role Variables
 
 
         certbot_repo: https://github.com/certbot/certbot.git
@@ -21,3 +27,14 @@ Example vars:
             email: support@example.com
             additional_domains:
               - www.example.com
+
+
+## Example Playbook
+
+    - hosts: servers
+      roles:
+        - dkhabarov.ansible-role-certbot
+
+
+## License
+GNU GPLv3
