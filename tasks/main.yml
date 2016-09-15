@@ -6,6 +6,7 @@
     dest: "{{ certbot_dir }}"
     version: "{{ certbot_version }}"
     update: "{{ certbot_keep_updated }}"
+  tags: clone_certbot_repo
 
 - name: Ensure certbot-auto is executable.
   file:
@@ -35,6 +36,6 @@
 
 - name: install renew script
   template:
-    src: templates/gencerts.sh
+    src: gencerts.sh
     dest: /opt/gencerts.sh
     mode: 0755
