@@ -6,6 +6,17 @@ Installs Certbot (for Let's Encrypt) for Debian/Ubuntu.
 
 Certbot requires Git to be installed.
 
+## Installation
+
+Write to requirements.yml
+
+        - src: https://github.com/dkhabarov/ansible-role-certbot.git
+          name: dkhabarov.ansible-role-certbot
+
+Run install command:
+
+        ansible-galaxy install -i -f -r requirements.yml
+
 ## Role Variables
 
 
