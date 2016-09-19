@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+EMAIL="{{ item.email }}"
+
+@weekly root {{certbot_dir}}/certbot-auto renew --quiet --no-self-upgrade -c /etc/certbot-{{ item.main }}.conf

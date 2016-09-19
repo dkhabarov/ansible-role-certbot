@@ -1,0 +1,7 @@
+---
+
+- name: install git package
+  apt:
+    pkg: git
+    state: present
+  tags: certbot_install_git

@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-
+# Documentation: https://certbot.eff.org/docs/using.html
 
 email = {{ item.email }}
 
@@ -11,8 +11,13 @@ authenticator = webroot
 
 webroot-path = {{item.root_dir}}
 
-renew-by-default = True
+# При keep-until-expiring = True предпочтение отдаётся этой опции. Получаем Ошибку Too many certificates for example.com
+
+#renew-by-default = True
 
 agree-tos = True
 
 post-hook = {{ certbot_post_hook }}
+
+
+keep-until-expiring = True
