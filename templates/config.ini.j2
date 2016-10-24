@@ -16,8 +16,8 @@ webroot-path = {{item.root_dir}}
 #renew-by-default = True
 
 agree-tos = True
-
+{%if certbot_post_hook is defined %}
 post-hook = {{ certbot_post_hook }}
-
+{%endif%}
 
 keep-until-expiring = True
