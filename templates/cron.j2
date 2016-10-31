@@ -2,4 +2,4 @@
 
 EMAIL="{{ item.email }}"
 
-@weekly root {{certbot_dir}}/certbot-auto renew --quiet --no-self-upgrade -c /etc/certbot-{{ item.main }}.conf
+@weekly root {{certbot_dir}}/certbot-auto certonly --quiet --no-self-upgrade -c /etc/certbot-{{ item.main }}.conf
