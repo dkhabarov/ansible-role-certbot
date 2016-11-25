@@ -1,7 +1,7 @@
 ---
 
 - include: Debian.yml
-  when: ansible_os_famify == "Debian"
+  when: ansible_os_family == "Debian"
 
 - name: Clone Certbot into configured directory.
   git:
